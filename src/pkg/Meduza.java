@@ -58,10 +58,10 @@ public class Meduza {
 	Meduza(){
 		Random rnd = new Random();
 				
-		RetractStartA = 0.6f;
+		RetractStartA = 0.3f;
 		ContractStartA = 0.2f;
-		RetractStartB = 0.1f;
-		ContractStartB = 0.8f;
+		RetractStartB = 0.3f;
+		ContractStartB = 0.2f;
 		
 		RetractPhiA = 1.6f;
 		ContractPhiA = 3f;
@@ -140,7 +140,7 @@ public class Meduza {
 		
 		float newArea = calculateArea();
 		this.d = calculateD();
-		float change = (newArea-area)/this.d;
+		float change = (newArea-area)/(this.d);
 		System.out.println(change);
 		area = newArea;
 		
