@@ -54,4 +54,9 @@ public class Ball {
 		System.out.println("Pos:" + position.x + position.y + "mass:" + mass);
 	}
 	
+	public Ball copy(Meduse m) {
+		Ball copy = new Ball(m, position.x, position.y, momentum.x, momentum.y, mass);
+		return copy;
+	}
+	
 }

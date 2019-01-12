@@ -3,37 +3,38 @@ import java.util.Random;
 
 public class Meduse {
 
-	// KULKOWE
-	ArrayList<Muscle> muscleList = new ArrayList<>(); // lista mięśni
-	ArrayList<Link> linkList = new ArrayList<>(); // kista połączeń sztywnych
-	ArrayList<Ball> balls = new ArrayList<>(); // lista kul
+	//KULKOWE
+	ArrayList<Muscle> muscleList = new ArrayList<>();	//lista mięśni
+	ArrayList<Link> linkList = new ArrayList<>();		//kista połączeń sztywnych
+	ArrayList<Ball> balls = new ArrayList<>();			//lista kul
+	
+	int n;						//rozmiar meduzy, liczba kul
+	final float R=45;					//odległość między kulami
+	final float epsilon = 100;		//epsilon do sił międzykulkowych
+	final float tau = (float) 0.001;	//krok czasowy
+	float time = 0;				//zmienna na czas całkowity
+	
+	float heartCycle=0;			//moment cyklu serca
+	float heartCycleLength=2f;	//długość całk. cyjklu serca
 
-	int n; // rozmiar meduzy, liczba kul
-	float R = 45; // odległość między kulami
-	float epsilon = 100; // epsilon do sił międzykulkowych
-	float tau = (float) 0.001; // krok czasowy
-	float time = 0; // zmienna na czas całkowity
-
-	float heartCycle = 0; // moment cyklu serca
-	float heartCycleLength = 2f; // długość całk. cyjklu serca
-
-	Vec rij = new Vec(); // wektor pomocniczy na odległość między dwoma
-							// kulkami
-	Vec locForce = new Vec(); // wektor pomocniczy na siłę mieðzy dwoma
-								// kulkami
-	Vec friction = new Vec(); // wektor pomocniczy na siłę tarcia
-	Vec perpR = new Vec(); // wektor pomocniczy na wektor prostopadły do linku
-	Vec meanForceOfMuscle = new Vec(); // wektor pomocniczy na średnią siłę
-										// mieśnia (?)
-	Vec meanForceOfReaction = new Vec(); // wektor pomocniczy na średnią
-											// siłę oddziaływania woda-meduza
-
+	Vec rij = new Vec();					//wektor pomocniczy na odległość między dwoma kulkami
+	Vec locForce = new Vec();				//wektor pomocniczy na siłę mieðzy dwoma kulkami
+	Vec friction = new Vec();				//wektor pomocniczy na siłę tarcia
+	Vec perpR = new Vec();					//wektor pomocniczy na wektor prostopadły do linku
+	Vec meanForceOfMuscle = new Vec();		//wektor pomocniczy na średnią siłę mieśnia (?)
+	Vec meanForceOfReaction = new Vec();	//wektor pomocniczy na średnią siłę oddziaływania woda-meduza
+	
 	/* --- zmienne funkcji celu --- */
 	float coveredDistance;
 	Vec coveredDistanceVec = new Vec();
 
 	Random meduse_rnd = new Random();
 
+	//potrzebne do kopiwania, zeby nie robilo niepotrzebnie nowych miesni itp
+	public Meduse() {
+		
+	}
+	
 	/**
 	 * Konstruktor tworzący meduzę - ustala kule i mięśnie
 	 * 
@@ -379,4 +380,28 @@ public class Meduse {
 		value += value * (meduse_rnd.nextFloat() - 0.5) / 10;
 		return value;
 	}
+	
+	public Meduse copy() {
+		Meduse copy = new Meduse();
+		copy.n = n;
+		copy.time = time;
+		copy.heartCycle = heartCycle;
+		copy.heartCycleLength = heartCycleLength;
+
+		for(Muscle muscle : muscleList) {
+			copy.muscleList.add(muscle.copy(copy));
+		}
+		
+		for(Link link : linkList) {
+			copy.linkList.add(link.copy(copy));
+		}
+		
+		for(Ball ball : balls) {
+			copy.balls.add(ball.copy(copy));
+			}
+		
+		
+		return copy;
+	}
+	
 }

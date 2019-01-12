@@ -14,6 +14,10 @@ public class Link {
 	Vec rjk = new Vec();
 	float criticalVelocitySquared = (float) Math.pow(50, 2);
 	
+	public Link copy(Meduse m) {
+		return new Link(m, startBall, midball, endBall);
+	}
+	
 	Link(Meduse meduse, int startBall, int midBall, int endBall){
 		this.meduse = meduse;
 		this.startBall = startBall;

@@ -88,5 +88,9 @@ public class Vec {
 		float scaleFactor = (this.x*vec.x + this.y*vec.y)/(vec.x*vec.x + vec.y*vec.y);
 		this.scale(scaleFactor);
 	}
+	
+	public Vec copy() {
+		return new Vec(x,y);
+	}
 
 }

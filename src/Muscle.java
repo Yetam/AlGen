@@ -173,5 +173,12 @@ public class Muscle {
 		return (float) (f*f/ Math.pow(1000, 2));
 	}
 	
+	public Muscle copy(Meduse m) {
+		Muscle copy = new Muscle(m, startBall, middBall, endBall, contractLength, retracrLength, contractTime, retractTime, 0.1f, retractEpsilon, contractEpsilon);
+		copy.rightTwisted = this.rightTwisted;
+		
+		return copy;
+	}
+	
 
 }
