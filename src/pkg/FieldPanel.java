@@ -41,30 +41,30 @@ public class FieldPanel extends JPanel {
 		g.drawLine(
 				(int)valid( meduza.xx ),
 				(int)valid( meduza.yy ),
-				(int)(valid( meduza.xx ) + R*Math.cos(meduza.dir - meduza.cuurentA)),
-				(int)(valid( meduza.yy ) + R*Math.sin(meduza.dir - meduza.cuurentA))
+				(int)(valid( meduza.xx ) + R*Math.cos(meduza.dir - meduza.currentA)),
+				(int)(valid( meduza.yy ) + R*Math.sin(meduza.dir - meduza.currentA))
 				);
 		//na prawo B
 		g.drawLine(
-				(int)(valid( meduza.xx ) + R*Math.cos(meduza.dir - meduza.cuurentA)),
-				(int)(valid( meduza.yy ) + R*Math.sin(meduza.dir - meduza.cuurentA)),
-				(int)(valid( meduza.xx ) + R*Math.cos(meduza.dir - meduza.cuurentA) + R*Math.cos(meduza.dir-meduza.cuurentA-meduza.currentB)) ,
-				(int)(valid( meduza.yy ) + R*Math.sin(meduza.dir - meduza.cuurentA) + R*Math.sin(meduza.dir-meduza.cuurentA-meduza.currentB))
+				(int)(valid( meduza.xx ) + R*Math.cos(meduza.dir - meduza.currentA)),
+				(int)(valid( meduza.yy ) + R*Math.sin(meduza.dir - meduza.currentA)),
+				(int)(valid( meduza.xx ) + R*Math.cos(meduza.dir - meduza.currentA) + R*Math.cos(meduza.dir-meduza.currentA-meduza.currentB)) ,
+				(int)(valid( meduza.yy ) + R*Math.sin(meduza.dir - meduza.currentA) + R*Math.sin(meduza.dir-meduza.currentA-meduza.currentB))
 				);
 		
 		//na lewo A
 		g.drawLine(
 				(int)valid( meduza.xx ),
 				(int)valid( meduza.yy ),
-				(int)(valid( meduza.xx ) + R*Math.cos(meduza.dir + meduza.cuurentA)),
-				(int)(valid( meduza.yy ) + R*Math.sin(meduza.dir + meduza.cuurentA))
+				(int)(valid( meduza.xx ) + R*Math.cos(meduza.dir + meduza.currentA)),
+				(int)(valid( meduza.yy ) + R*Math.sin(meduza.dir + meduza.currentA))
 				);
 		//na lewo B
 		g.drawLine(
-				(int)(valid( meduza.xx ) + R*Math.cos(meduza.dir + meduza.cuurentA)),
-				(int)(valid( meduza.yy ) + R*Math.sin(meduza.dir + meduza.cuurentA)),
-				(int)(valid( meduza.xx ) + R*Math.cos(meduza.dir + meduza.cuurentA) + R*Math.cos(meduza.dir+meduza.cuurentA+meduza.currentB)) ,
-				(int)(valid( meduza.yy ) + R*Math.sin(meduza.dir + meduza.cuurentA) + R*Math.sin(meduza.dir+meduza.cuurentA+meduza.currentB))
+				(int)(valid( meduza.xx ) + R*Math.cos(meduza.dir + meduza.currentA)),
+				(int)(valid( meduza.yy ) + R*Math.sin(meduza.dir + meduza.currentA)),
+				(int)(valid( meduza.xx ) + R*Math.cos(meduza.dir + meduza.currentA) + R*Math.cos(meduza.dir+meduza.currentA+meduza.currentB)) ,
+				(int)(valid( meduza.yy ) + R*Math.sin(meduza.dir + meduza.currentA) + R*Math.sin(meduza.dir+meduza.currentA+meduza.currentB))
 				);
 
 	}

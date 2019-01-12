@@ -18,7 +18,7 @@ public class Meduza {
 	float xx;
 	float yy;
 	float dir;
-	float cuurentA = 1.8f;
+	float currentA = 1.8f;
 	float currentB = 0.6f;
 	
 	//Ogolne
@@ -62,8 +62,6 @@ public class Meduza {
 		
 		RetractPhiB = 0.0f;
 		ContractPhiB = 0.5f;
-		
-		
 		
 		xx=0;
 		yy=0;
@@ -125,6 +123,8 @@ public class Meduza {
 	
 	void timeStep() {
 		time += 0.01f;
+		currentA = getCurrentPositionA();
+		currentB = getCurrentPositionB();
 	}
 	
 	float getCurrentPositionA(){
@@ -146,6 +146,4 @@ public class Meduza {
 			return angleBB + (time - tBB)*velBA;
 		}
 		return 0f;	}
-	
-	
 }
