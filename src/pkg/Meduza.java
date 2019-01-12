@@ -38,6 +38,15 @@ public class Meduza {
 	
 	final float angleAA;
 	final float angleAB;
+	
+	final float velBA;
+	final float velBB;
+	
+	final float tBA;
+	final float tBB;
+	
+	final float angleBA;
+	final float angleBB;
 
 	
 	Meduza(){
@@ -48,11 +57,11 @@ public class Meduza {
 		RetractStartB = 0.1f;
 		ContractStartB = 0.8f;
 		
-		RetractPhiA = 0.7f;
-		ContractPhiA = 0.3f;
+		RetractPhiA = 0.3f;
+		ContractPhiA = 0.7f;
 		
-		RetractPhiB = 0.6f;
-		ContractPhiB = 0.2f;
+		RetractPhiB = 0.0f;
+		ContractPhiB = 0.5f;
 		
 		
 		
@@ -86,6 +95,32 @@ public class Meduza {
 			angleAA = ContractPhiA;
 			angleAB = RetractPhiA;
 		}
+		
+		if(ContractStartB < RetractStartB){ //jesli true to najpierw jest faza retract
+			ContractDurB = RetractStartB - ContractStartB;
+			RetractDurB = 1-ContractDurB;
+			velBA = (RetractPhiB - ContractPhiB)/ RetractDurB;
+			velBB = -(RetractPhiB - ContractPhiB)/ ContractDurB;
+			
+			tBA = ContractStartB;
+			tBB = RetractStartB;
+			
+			angleBA = RetractPhiB;
+			angleBB = ContractPhiB;
+
+		}
+		else{
+			RetractDurB = ContractStartB - RetractStartB;
+			ContractDurB = 1-RetractDurB;
+			velBA = (ContractPhiB - RetractPhiB)/ ContractDurB;
+			velBB = -(ContractPhiB - RetractPhiB)/ RetractDurB;
+			
+			tBA = RetractStartB;
+			tBB = ContractStartB;
+			
+			angleBA = ContractPhiB;
+			angleBB = RetractPhiB;
+		}
 	}
 	
 	void timeStep() {
@@ -93,7 +128,6 @@ public class Meduza {
 	}
 	
 	float getCurrentPositionA(){
-		
 		if(time >= 0 && time < tAA) {
 			return angleAA -(tAA-time)*velAA;
 		} else if(time >= tAA && time < tAB) {
@@ -104,8 +138,14 @@ public class Meduza {
 		return 0f;
 	}
 	float getCurrentPositionB(){
-		return 0f;
-	}
+		if(time >= 0 && time < tBA) {
+			return angleBA -(tBA-time)*velBA;
+		} else if(time >= tBA && time < tBB) {
+			return angleBA + (time - tBA)*velBB;
+		} else if(time > tBB) {
+			return angleBB + (time - tBB)*velBA;
+		}
+		return 0f;	}
 	
 	
 }

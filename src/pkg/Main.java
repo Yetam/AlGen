@@ -9,8 +9,8 @@ public class Main {
 		gui.repaint();
 		for(int i =0; i < 100; i++) {
 			m.timeStep();
-			System.out.println((0.01f + i*0.01f) + " " + m.getCurrentPositionA() );
-			
+			System.out.println((0.01f + i*0.01f) + " " + m.getCurrentPositionA() + " " + m.getCurrentPositionB());
+
 		}
 
 	}
