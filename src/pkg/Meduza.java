@@ -18,8 +18,10 @@ public class Meduza {
 	float xx;
 	float yy;
 	float dir;
-	float currentA = 1.8f;
-	float currentB = 0.6f;
+	//float currentA = 1.8f;
+	//float currentB = 0.6f;
+	float currentA;
+	float currentB;
 	
 	//Ogolne
 	float time=0;
@@ -47,6 +49,9 @@ public class Meduza {
 	
 	final float angleBA;
 	final float angleBB;
+	
+	float area;
+	float d;
 
 	
 	Meduza(){
@@ -57,15 +62,19 @@ public class Meduza {
 		RetractStartB = 0.1f;
 		ContractStartB = 0.8f;
 		
-		RetractPhiA = 0.3f;
-		ContractPhiA = 0.7f;
+		RetractPhiA = 1.6f;
+		ContractPhiA = 3f;
 		
 		RetractPhiB = 0.0f;
-		ContractPhiB = 0.5f;
+		ContractPhiB = 1f;
 		
 		xx=0;
 		yy=0;
 		dir=0;
+		
+		area = calculateArea();
+		currentA = getCurrentPositionA();
+		currentB = getCurrentPositionB();
 		
 		//OBLICZANIE CZASU PRZEZ JAKI BEDZIE SIE SKURCZAC I ROZKURCZAC MEISIEN
 		if(ContractStartA < RetractStartA){ //jesli true to najpierw jest faza retract
@@ -125,6 +134,11 @@ public class Meduza {
 		time += 0.01f;
 		currentA = getCurrentPositionA();
 		currentB = getCurrentPositionB();
+		time = time%1f;
+		
+		float newArea = calculateArea();
+		this.d = calculateD();
+		System.out.println((newArea));
 	}
 	
 	float getCurrentPositionA(){
@@ -146,4 +160,18 @@ public class Meduza {
 			return angleBB + (time - tBB)*velBA;
 		}
 		return 0f;	}
+	
+	float calculateArea(){
+		float p1=0, p2=0;
+		
+		p1 = (float) Math.sin(2*(Math.PI-currentA));
+		p2 = (float) (( Math.sqrt(2-Math.cos(2*(Math.PI-currentA))) + Math.sin(Math.PI-currentA-currentB) ) * Math.sin(currentA+currentB-Math.PI/2f));
+		return p1+p2;
+	}
+	float calculateD(){
+		float d, delta;
+		delta = (float) (2*(Math.PI-currentA));
+		d = (float) (Math.sqrt(2-Math.cos(delta)) + 2*Math.sin(Math.PI-currentA-currentB));
+		return d;
+	}
 }
