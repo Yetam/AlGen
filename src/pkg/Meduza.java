@@ -18,8 +18,8 @@ public class Meduza {
 	float xx;
 	float yy;
 	float dir;
-	float cuurentA;
-	float currentB;
+	float cuurentA = 1.8f;
+	float currentB = 0.6f;
 	
 	//Ogolne
 	float time=0;
